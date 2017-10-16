@@ -21,6 +21,7 @@ import br.ufes.inf.nemo.marvin.people.domain.Telephone;
  * @author Vítor E. Silva Souza (vitorsouza@gmail.com)
  * @version 1.0
  */
+
 @Entity
 public class Academic extends Person {
 	/** Serialization id. */
