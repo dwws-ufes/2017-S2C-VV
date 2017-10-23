@@ -28,6 +28,10 @@ public class Person extends PersistentObjectSupport implements Comparable<Person
 	@NotNull
 	@Size(max = 25)
 	protected String telephone;
+	
+	protected Date creationDate;
+	
+	protected Date updateDate;
 
 	public String getName() {
 		return name;
@@ -68,5 +72,21 @@ public class Person extends PersistentObjectSupport implements Comparable<Person
 	@Override
 	public String toString() {
 		return name;
+	}
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 }

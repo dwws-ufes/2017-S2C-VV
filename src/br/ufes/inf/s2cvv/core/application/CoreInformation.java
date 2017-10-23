@@ -18,6 +18,7 @@ import javax.inject.Named;
 import br.ufes.inf.nemo.jbutler.ResourceUtil;
 import br.ufes.inf.nemo.jbutler.ejb.persistence.exceptions.PersistentObjectNotFoundException;
 import br.ufes.inf.s2cvv.core.domain.S2CVVConfiguration;
+import br.ufes.inf.s2cvv.core.persistence.S2CVVConfigurationDAO;
 
 @Singleton
 @Named("coreInfo")
@@ -36,7 +37,7 @@ public class CoreInformation implements Serializable {
 
 	/** The DAO for MarvinConfiguration objects. */
 	@EJB
-	private S2CVVConfigurationDAO marvinConfigurationDAO;
+	private S2CVVConfigurationDAO s2cvvConfigurationDAO;
 
 	/** TODO: document this field. */
 	private S2CVVConfiguration currentConfig;
@@ -82,7 +83,7 @@ public class CoreInformation implements Serializable {
 	}
 
 	/** Getter for currentConfig. */
-	public MarvinConfiguration getCurrentConfig() {
+	public S2CVVConfiguration getCurrentConfig() {
 		return currentConfig;
 	}
 
