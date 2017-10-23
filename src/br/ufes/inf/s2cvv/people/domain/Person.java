@@ -59,6 +59,17 @@ public class Person extends PersistentObjectSupport implements Comparable<Person
 	protected Date creationDate;
 
 	@Temporal(TemporalType.DATE)
+	protected Date loginDate;
+
+	public Date getLoginDate() {
+		return loginDate;
+	}
+
+	public void setLoginDate(Date loginDate) {
+		this.loginDate = loginDate;
+	}
+
+	@Temporal(TemporalType.DATE)
 	protected Date updateDate;
 
 	public String getName() {
