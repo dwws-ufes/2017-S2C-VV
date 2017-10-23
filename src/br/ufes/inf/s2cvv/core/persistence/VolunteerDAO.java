@@ -23,5 +23,6 @@ public interface VolunteerDAO extends BaseDAO<Volunteer> {
 	 * @throws PersistentObjectNotFoundException
 	 * @throws MultiplePersistentObjectsFoundException
 	 */
+	Volunteer retrieveByName(String name) throws MultiplePersistentObjectsFoundException, PersistentObjectNotFoundException;
 
 }

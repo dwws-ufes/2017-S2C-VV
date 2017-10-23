@@ -7,12 +7,6 @@ import br.ufes.inf.nemo.jbutler.ejb.persistence.exceptions.MultiplePersistentObj
 import br.ufes.inf.nemo.jbutler.ejb.persistence.exceptions.PersistentObjectNotFoundException;
 import br.ufes.inf.s2cvv.core.domain.Priest;
 
-/**
- * TODO: document this type.
- *
- * @author Vítor E. Silva Souza (vitorsouza@gmail.com)
- * @version 1.0
- */
 @Local
 public interface PriestDAO extends BaseDAO<Priest> {
 	/**
@@ -23,5 +17,6 @@ public interface PriestDAO extends BaseDAO<Priest> {
 	 * @throws PersistentObjectNotFoundException
 	 * @throws MultiplePersistentObjectsFoundException
 	 */
+	Priest retrieveByName(String name) throws PersistentObjectNotFoundException, MultiplePersistentObjectsFoundException;
 
 }
