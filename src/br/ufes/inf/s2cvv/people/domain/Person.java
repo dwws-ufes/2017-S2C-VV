@@ -28,9 +28,37 @@ public class Person extends PersistentObjectSupport implements Comparable<Person
 	@NotNull
 	@Size(max = 25)
 	protected String telephone;
+
+	@Basic
+	@NotNull
+	@Size(max = 50)
+	protected String email;
 	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	@Basic
+	@NotNull
+	@Size(max = 25)
+	protected String password;
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Temporal(TemporalType.DATE)
 	protected Date creationDate;
-	
+
+	@Temporal(TemporalType.DATE)
 	protected Date updateDate;
 
 	public String getName() {

@@ -9,20 +9,17 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.ufes.inf.nemo.jbutler.TextUtils;
+import br.ufes.inf.s2cvv.core.domain.Priest;
 import br.ufes.inf.s2cvv.core.domain.S2CVVConfiguration;
 import br.ufes.inf.s2cvv.core.exceptions.SystemInstallFailedException;
 import br.ufes.inf.s2cvv.core.persistence.CommunityDAO;
 import br.ufes.inf.s2cvv.core.persistence.PriestDAO;
 import br.ufes.inf.s2cvv.core.persistence.S2CVVConfigurationDAO;
 import br.ufes.inf.s2cvv.core.persistence.VolunteerDAO;
-import br.ufes.inf.s2cvv.people.domain.Person;
 
 @Stateless
 public class InstallSystemServiceBean implements InstallSystemService {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = Logger.getLogger(InstallSystemServiceBean.class.getCanonicalName());
@@ -42,22 +39,25 @@ public class InstallSystemServiceBean implements InstallSystemService {
 	// core info about the system
 	@EJB
 	private CoreInformation coreInformation;
-	
+
 	@Override
-	public void installSystem(S2CVVConfiguration config, Person admin) throws SystemInstallFailedException {
+	public void installSystem(S2CVVConfiguration config, Priest admin) throws SystemInstallFailedException {
 		logger.log(Level.FINER, "Installing system...");
 
 		try {
+			// Encodes the admin's password.
+			admin.setPassword(TextUtils.produceMd5Hash(admin.getPassword()));
+			
 			// Register the last update date / creation date.
 			Date now = new Date(System.currentTimeMillis());
-			admin.setLastUpdateDate(now);
+			admin.setUpdateDate(now);
 			admin.setCreationDate(now);
 			config.setCreationDate(now);
 			logger.log(Level.FINE, "Admin's last update date have been set as: {0}", new Object[] { now });
 
 			// Saves the administrator.
-			logger.log(Level.FINER, "Persisting admin data...\n\t- Short name = {0}\n\t- Last update date = {1}", new Object[] { admin.getName(), admin.getLastUpdateDate() });
-			personDAO.save(admin);
+			logger.log(Level.FINER, "Persisting admin data...\n\t- Short name = {0}\n\t- Last update date = {1}", new Object[] { admin.getName(), admin.getUpdateDate() });
+			priestDAO.save(admin);
 			logger.log(Level.FINE, "The administrator has been saved: {0} ({1})", new Object[] { admin.getName(), admin.getEmail() });
 
 			// Saves Marvin's configuration.
@@ -80,5 +80,8 @@ public class InstallSystemServiceBean implements InstallSystemService {
 			throw new SystemInstallFailedException(e);
 		}
 	}
+
+	
+	
 
 }

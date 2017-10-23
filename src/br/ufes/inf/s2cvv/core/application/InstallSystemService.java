@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 import javax.ejb.Local;
 
-import br.ufes.inf.nemo.marvin.core.exceptions.SystemInstallFailedException;
+import br.ufes.inf.s2cvv.core.domain.Priest;
 import br.ufes.inf.s2cvv.core.domain.S2CVVConfiguration;
-import br.ufes.inf.s2cvv.people.domain.Person;
+import br.ufes.inf.s2cvv.core.exceptions.SystemInstallFailedException;
 
 @Local
 public interface InstallSystemService extends Serializable {
 	
-	void installSystem(S2CVVConfiguration config, Person admin) throws SystemInstallFailedException;
+	void installSystem(S2CVVConfiguration config, Priest admin) throws SystemInstallFailedException;
 
 }
