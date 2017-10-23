@@ -5,7 +5,8 @@
 	version="2.2">
 
 	<application>
-		<!-- Defines the resource bundle that contains the standard JSF messages (overriding the ones provided). -->
+		<!-- Defines the resource bundle that contains the standard JSF messages 
+			(overriding the ones provided). -->
 		<message-bundle>br.ufes.inf.nemo.marvin.faces</message-bundle>
 
 		<!-- Loads resource bundles for i18n messages and assigns names to them. -->

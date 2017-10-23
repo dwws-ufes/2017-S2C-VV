@@ -1,0 +1,171 @@
+Comparison + TO-DO List:
+	- means implemented
+	+ means to-do
+	* means WIP
+
+marvin
+	- faces.properties
+	- messages.properties
+
+marvin.core.application
+	- CoreInformation.java
+	- InstallSystemService.java
+	- InstallSystemServiceBean.java
+	- SessionInformation.java
+	- SessionInformationBean.java
+
+marvin.core.controller
+	- InstallSystemController.java
+	- LogoutServlet.java
+	- SessionController.java
+
+marvin.core.domain
+	- Academic.java
+	- MarvinConfiguration.java
+
+marvin.core.exceptions
+	- LoginFailedException.java
+	- SystemInstallFailedException.java
+
+marvin.core.persistence
+	- AcademicDAO.java
+	- AcademicJPADAO.java
+	- MarvinConfigurationDAO.java
+	- MarvinConfigurationJPADAO.java
+
+marvin.core.view
+	- messages.properties
+
+marvin.people.domain
+	- ContactType.java
+	- Person.java
+	- Telephone.java
+
+marvin.people.persistence
+	- ContactTypeDAO.java
+	- ContactTypeJPADAO.java
+	- TelephoneDAO.java
+	- ContactTypeJPADAO.java
+
+-----------------------------------------------------
+marvin
+	[PRESENTATION TIER]
+	- view 
+		: JSF stuff
+			- WebContent/WEB-INF/web.xml
+				: lots of configs
+			- WebContent/resources/default/decorator.xhtml
+			- WebContent/index.xhtml
+				: page layout, how the decorator is applied
+			- WebContent/WEB-INF/faces-config.xml
+				: internationalization (i18n)
+
+	[BUSINESS TIER]
+	- core.application
+		: One pair of stateless session EJB interface/implementation for each use case (program to interface not implementation principle)
+		: The "-Bean" Suffix is used in the implementation classes, CDI is used to inject DAOs from data access tier where they're needed
+			- CoreInformation
+				: pkg-wide info (name of current decorator, check if sys is installed, etc)
+			- InstallSystemService, InstallSystemServiceBean
+				: used in "" use case
+			- SessionInformation, SessionInformationBean
+				: used in "Log In" use case
+	- core.domain
+		: Contains entities registered during {Install System, Log In} use cases.
+		: Extends PersistentObjectSupport (JButler benefit)
+		: Each class is annotated properly for Obj/Rel Mapping w/ JPA and has their respective JPA static metamodels (src-metamodel, autogen from eclipse)
+			- Academic
+				: website admin
+			- MarvinConfiguration
+				: holds institution acronymn
+	- people.domain
+		: useful package, contains domain classes which represent people and their phone numbers
+		: they have their own package because subsystems other than core might have use for them
+			- Person
+			- ContactType
+			- Telephone
+
+	[DATA ACCESS TIER]
+	- core.persistence
+		: contains a pair of stateless session EJB interface/implementation for each domain class that needs a DAO (JPADAO is the implementation class)
+		: each DAO extends BaseDAO (Interface), implements BaseJPADAO (Implementation)
+			- AcademicDAO, AcademicJPADAO
+			- MarvinConfigurationDAO, MarvinConfigurationJPADAO
+
+	- people.persistence
+		: made in the same way 'core' was
+			- domain
+				- PersonDAO, PersonJPADAO
+				- ContactTypeDAO, ContactTypeJPADAO
+				- TelephoneDAO, TelephoneJPADAO
+
+-----------------------------------------------------
+
+
+s2cvv
+	+ faces.properties
+	+ messages.properties
+
+s2cvv.core.application
+	+ CoreInformation.java
+	+ InstallSystemService.java
+	+ InstallSystemServiceBean.java
+	+ SessionInformation.java
+	+ SessionInformationBean.java
+
+s2cvv.core.controller
+	+ InstallSystemController.java
+	+ LogoutServlet.java
+	+ SessionController.java
+
+s2cvv.core.domain
+	- Community.java
+	- FormationCourse.java
+	- Party.java
+	- Priest.java
+	- Volunteer.java
+	- Wedding.java
+
+s2cvv.core.exceptions
+	+ LoginFailedException.java
+	+ SystemInstallFailedException.java
+
+s2cvv.core.persistence
+	+ CommunityDAO.java
+	+ CommunityJPADAO.java
+	+ FormationCourseDAO.java
+	+ FormationCourseJPADAO.java
+	+ PriestDAO.java
+	+ PriestJPADAO.java
+	+ VolunteerDAO.java
+	+ VolunteerJPADAO.java
+	+ PartyDAO.java
+	+ PartyJPADAO.java
+	+ WeddingDAO.java
+	+ WeddingJPADAO.java
+
+s2cvv.core.view
+	+ messages.properties
+
+s2cvv.event.domain
+	- Event.java
+
+s2cvv.event.persistence
+	+ EventDAO.java
+	+ EventJPADAO.java
+
+s2cvv.people.domain
+	- Group.java
+	- Person.java
+	- PriestFormation.java
+	- VolunteerFormation.java
+
+s2cvv.people.persistence
+	+ GroupDAO.java
+	+ GroupJPA.java
+	+ PersonDAO.java
+	+ PersonJPADAO.java
+	+ PriestFormationDAO.java
+	+ PriestFormationJPA.java
+	+ VolunteerFormation.java
+	+ VolunteerFormation.java

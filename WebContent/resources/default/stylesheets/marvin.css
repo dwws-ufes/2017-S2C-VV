@@ -5,28 +5,35 @@
 
 /* Input fields manipulation. */
 .ui-inputfield {
-    width: 100%;
-    padding: 6px 12px;
+	width: 100%;
+	padding: 6px 12px;
 }
+
 .ui-selectonemenu {
-	width: 100%;	
+	width: 100%;
 }
+
 .ui-selectonemenu .ui-selectonemenu-trigger {
 	width: 28px;
 	padding-top: 5px;
 }
+
 .ui-datatable {
 	margin-bottom: 5px;
 }
+
 .ui-datatable tr.ui-state-highlight {
 	background: #0081c2;
 }
+
 form#filterForm .ui-selectonemenu-label {
 	text-align: right;
 }
+
 form#filterForm .ui-panelgrid-cell {
 	padding: 4px 3px;
 }
+
 form#filterForm .ui-button {
 	padding: 6px 6px;
 }
@@ -43,6 +50,7 @@ form#filterForm .ui-button {
 	font-size: 14px;
 	vertical-align: middle;
 }
+
 .ui-grid .fa-fw {
 	position: absolute;
 	left: 0;
@@ -53,9 +61,10 @@ form#filterForm .ui-button {
 	line-height: 34px;
 	font-size: 1.4em;
 	text-align: center;
-	border-right: 1px solid rgba(0,0,0,0.2);
+	border-right: 1px solid rgba(0, 0, 0, 0.2);
 	vertical-align: middle;
 }
+
 .ui-grid .ui-button-text {
 	text-align: left;
 }
