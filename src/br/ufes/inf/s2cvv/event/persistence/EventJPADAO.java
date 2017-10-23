@@ -1,12 +1,14 @@
-package br.ufes.inf.s2cvv.core.persistence;
+package br.ufes.inf.s2cvv.event.persistence;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import br.ufes.inf.nemo.jbutler.ejb.persistence.BaseJPADAO;
-import br.ufes.inf.s2cvv.core.domain.Wedding;
+import br.ufes.inf.s2cvv.event.domain.Event;
 
-public class WeddingJPADAO extends BaseJPADAO<Wedding> implements WeddingDAO {
+@Stateless
+public class EventJPADAO extends BaseJPADAO<Event> implements EventDAO{
 
 	private static final long serialVersionUID = 1L;
 	
