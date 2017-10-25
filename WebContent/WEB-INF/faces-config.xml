@@ -7,15 +7,15 @@
 	<application>
 		<!-- Defines the resource bundle that contains the standard JSF messages 
 			(overriding the ones provided). -->
-		<message-bundle>br.ufes.inf.nemo.marvin.faces</message-bundle>
+		<message-bundle>br.ufes.inf.s2cvv.faces</message-bundle>
 
 		<!-- Loads resource bundles for i18n messages and assigns names to them. -->
 		<resource-bundle>
-			<base-name>br.ufes.inf.nemo.marvin.messages</base-name>
+			<base-name>br.ufes.inf.s2cvv.messages</base-name>
 			<var>msgs</var>
 		</resource-bundle>
 		<resource-bundle>
-			<base-name>br.ufes.inf.nemo.marvin.core.view.messages</base-name>
+			<base-name>br.ufes.inf.s2cvv.core.view.messages</base-name>
 			<var>msgsCore</var>
 		</resource-bundle>
 

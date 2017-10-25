@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 //import javax.persistence.criteria.CriteriaBuilder;
 //import javax.persistence.criteria.CriteriaQuery;
 //import javax.persistence.criteria.Root;
+import javax.persistence.PersistenceContext;
 
 import br.ufes.inf.nemo.jbutler.ejb.persistence.BaseJPADAO;
 //import br.ufes.inf.nemo.jbutler.ejb.persistence.exceptions.MultiplePersistentObjectsFoundException;
@@ -20,6 +21,7 @@ public class VolunteerJPADAO extends BaseJPADAO<Volunteer> implements VolunteerD
 
 	private static final long serialVersionUID = 1L;
 	
+	@PersistenceContext
 	EntityManager entityManager;
 
 	@Override

@@ -28,12 +28,10 @@ public class SessionInformationBean implements SessionInformation {
 	@EJB
 	PersonDAO personDAO;
 	
-	@EJB
 	Person currentUser;
 
 	@Override
 	public Person getCurrentUser() {
-		// TODO Auto-generated method stub
 		return currentUser;
 	}
 

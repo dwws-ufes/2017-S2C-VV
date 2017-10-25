@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -47,6 +48,7 @@ public class S2CVVConfigurationJPADAO extends BaseJPADAO<S2CVVConfiguration> imp
 		}
 	}
 	
+	@PersistenceContext
 	EntityManager entityManager;
 
 	@Override
