@@ -50,8 +50,6 @@
 					<p:inputText id="name"
 						value="#{installSystemController.admin.name}" required="true"
 						pt:placeholder="#{msgsCore['installSystem.field.admin.name.placeholder']}">
-						<f:ajax event="blur" render="nameField shortNameField"
-							listener="#{installSystemController.suggestShortName}" />
 					</p:inputText>
 				</ui:decorate>
 
@@ -64,18 +62,6 @@
 						value="#{installSystemController.admin.email}" required="true"
 						pt:placeholder="#{msgsCore['installSystem.field.admin.email.placeholder']}">
 						<f:ajax event="blur" render="emailField" />
-					</p:inputText>
-				</ui:decorate>
-
-				<ui:decorate
-					template="/resources/#{coreInfo.decorator}/formfield.xhtml">
-					<ui:param name="fieldName" value="shortName" />
-					<ui:param name="label"
-						value="#{msgsCore['installSystem.field.admin.shortName']}" />
-					<p:inputText id="shortName"
-						value="#{installSystemController.admin.shortName}" required="true"
-						pt:placeholder="#{msgsCore['installSystem.field.admin.shortName.placeholder']}">
-						<f:ajax event="blur" render="shortNameField" />
 					</p:inputText>
 				</ui:decorate>
 
