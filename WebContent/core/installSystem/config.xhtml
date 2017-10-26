@@ -31,13 +31,13 @@
 
 			<ui:decorate
 				template="/resources/#{coreInfo.decorator}/formfield.xhtml">
-				<ui:param name="fieldName" value="institutionAcronym" />
+				<ui:param name="fieldName" value="parishAcronym" />
 				<ui:param name="label"
-					value="#{msgsCore['installSystem.field.config.institutionAcronym']}" />
-				<p:inputText id="institutionAcronym"
-					value="#{installSystemController.config.institutionAcronym}"
+					value="#{msgsCore['installSystem.field.config.parishAcronym']}" />
+				<p:inputText id="parishAcronym"
+					value="#{installSystemController.config.parishAcronym}"
 					required="true">
-					<f:ajax event="blur" render="institutionAcronymField" />
+					<f:ajax event="blur" render="parishAcronymField" />
 				</p:inputText>
 			</ui:decorate>
 
