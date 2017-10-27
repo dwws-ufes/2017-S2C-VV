@@ -16,6 +16,7 @@ import br.ufes.inf.s2cvv.core.persistence.PriestDAO;
 public class ManagePriestsServiceBean extends CrudServiceBean<Priest> implements ManagePriestsService {
 
 	private static final long serialVersionUID = 1L;
+	
 	@EJB
 	private PriestDAO priestDAO;
 

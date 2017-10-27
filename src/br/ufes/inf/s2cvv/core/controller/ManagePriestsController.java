@@ -18,6 +18,7 @@ public class ManagePriestsController extends CrudController<Priest> {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@EJB
 	private ManagePriestsService managePriestsService;
 
