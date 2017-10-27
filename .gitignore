@@ -24,7 +24,8 @@ hs_err_pid*
 
 .DS_Store*
 MANIFEST.MF
-pom.properties
+target/m2e-wtp/web-resources/META-INF/maven/br.ufes.inf.nemo/s2c-vv/pom.properties
+target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
 
 *.bkp
 /target/
