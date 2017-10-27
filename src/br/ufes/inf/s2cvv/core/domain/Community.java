@@ -1,11 +1,14 @@
 package br.ufes.inf.s2cvv.core.domain;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -31,7 +34,40 @@ public class Community extends PersistentObjectSupport implements Comparable<Com
 	@NotNull
 	@Size(max = 200)
 	protected String address;
+
+	@Temporal(TemporalType.DATE)
+	protected Date creationDate;
+
+	@Temporal(TemporalType.DATE)
+	protected Date loginDate;
+
+	@Temporal(TemporalType.DATE)
+	protected Date updateDate;
 	
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
+	public Date getLoginDate() {
+		return loginDate;
+	}
+
+	public void setLoginDate(Date loginDate) {
+		this.loginDate = loginDate;
+	}
+
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	protected Set<Event> communityEvents;
 

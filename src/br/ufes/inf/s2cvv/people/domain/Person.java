@@ -32,6 +32,10 @@ public class Person extends PersistentObjectSupport implements Comparable<Person
 	@Size(max = 50)
 	protected String email;
 
+	@Basic
+	@Size(max = 50)
+	protected String password;
+
 	public String getEmail() {
 		return email;
 	}
@@ -39,10 +43,6 @@ public class Person extends PersistentObjectSupport implements Comparable<Person
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	@Basic
-	@Size(max = 50)
-	protected String password;
 
 	public String getPassword() {
 		return password;
