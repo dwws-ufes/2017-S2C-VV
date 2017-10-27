@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	template="/resources/#{coreInfo.decorator}/decorator.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="#{msgsCore['managePriests.title.create']}"
+			rendered="#{(! managePriestsController.readOnly) and (managePriestsController.selectedEntity.id == null)}" />
+		<h:outputText value="#{msgsCore['managePriests.title.update']}"
+			rendered="#{(! managePriestsController.readOnly) and (managePriestsController.selectedEntity.id != null)}" />
+		<h:outputText value="#{msgsCore['managePriests.title.retrieve']}"
+			rendered="#{managePriestsController.readOnly}" />
+	</ui:define>
+
+	<ui:define name="description">
+		<h:outputText
+			value="#{msgsCore['managePriests.title.create.description']}"
+			rendered="#{(! managePriestsController.readOnly) and (managePriestsController.selectedEntity.id == null)}" />
+		<h:outputText
+			value="#{msgsCore['managePriests.title.update.description']}"
+			rendered="#{(! managePriestsController.readOnly) and (managePriestsController.selectedEntity.id != null)}" />
+		<h:outputText
+			value="#{msgsCore['managePriests.title.retrieve.description']}"
+			rendered="#{managePriestsController.readOnly}" />
+	</ui:define>
+
+	<ui:define name="body">
+		<ui:decorate template="/resources/#{coreInfo.decorator}/form.xhtml">
+			<ui:param name="formName" value="form" />
+			<ui:param name="formLabel"
+				value="#{msgsCore['managePriests.form.title']}" />
+			<p:hotkey bind="#{msgs['jbutler.crud.hotkey.focusFirstField']}"
+				handler="findObjectById('form:name').focus();" />
+
+			<ui:decorate
+				template="/resources/#{coreInfo.decorator}/formfield.xhtml">
+				<ui:param name="fieldName" value="name" />
+				<ui:param name="label"
+					value="#{msgsCore['managePriests.form.name']}" />
+				<p:inputText id="name"
+					value="#{managePriestsController.selectedEntity.name}"
+					required="true"
+					pt:placeholder="#{msgsCore['managePriests.form.name.placeholder']}"
+					disabled="#{managePriestsController.readOnly}">
+					<p:ajax event="blur" update="nameField" />
+				</p:inputText>
+			</ui:decorate>
+
+			<ui:decorate
+				template="/resources/#{coreInfo.decorator}/formfield.xhtml">
+				<ui:param name="fieldName" value="email" />
+				<ui:param name="label"
+					value="#{msgsCore['managePriests.form.email']}" />
+				<p:inputText id="email"
+					value="#{managePriestsController.selectedEntity.email}"
+					required="true"
+					pt:placeholder="#{msgsCore['managePriests.form.email.placeholder']}"
+					disabled="#{managePriestsController.readOnly}">
+					<p:ajax event="blur" update="emailField" />
+				</p:inputText>
+			</ui:decorate>
+
+			<ui:decorate
+				template="/resources/#{coreInfo.decorator}/formfield.xhtml">
+				<ui:param name="fieldName" value="telephone" />
+				<ui:param name="label"
+					value="#{msgsCore['managePriests.form.telephone']}" />
+				<p:inputText id="telephone"
+					value="#{managePriestsController.selectedEntity.telephone}"
+					required="true"
+					pt:placeholder="#{msgsCore['managePriests.form.telephone.placeholder']}"
+					disabled="#{managePriestsController.readOnly}">
+					<p:ajax event="blur" update="telephoneField" />
+				</p:inputText>
+			</ui:decorate>
+
+			<h:panelGroup rendered="#{! managePriestsController.readOnly}">
+				<ui:decorate
+					template="/resources/#{coreInfo.decorator}/formbuttonpanel-02.xhtml">
+					<p:commandButton id="cancelButton"
+						action="#{managePriestsController.list}"
+						value="#{msgs['jbutler.crud.button.cancel']}" immediate="true"
+						icon="fa fa-fw fa-close" />
+					<p:commandButton id="saveButton"
+						action="#{managePriestsController.save}"
+						value="#{msgs['jbutler.crud.button.save']}"
+						update=":form :globalMessages" icon="fa fa-fw fa-save" />
+					<p:defaultCommand target="saveButton" />
+					<p:hotkey bind="#{msgs['jbutler.crud.hotkey.backToList']}"
+						action="#{managePriestsController.list}" immediate="true" />
+				</ui:decorate>
+			</h:panelGroup>
+			<h:panelGroup rendered="#{managePriestsController.readOnly}">
+				<ui:decorate
+					template="/resources/#{coreInfo.decorator}/formbuttonpanel-01.xhtml">
+					<p:commandButton id="backButton"
+						action="#{managePriestsController.list}"
+						value="#{msgs['jbutler.crud.button.back']}" immediate="true"
+						icon="fa fa-fw fa-arrow-circle-left" />
+					<p:hotkey bind="#{msgs['jbutler.crud.hotkey.backToList']}"
+						action="#{managePriestsController.list}" immediate="true" />
+				</ui:decorate>
+			</h:panelGroup>
+		</ui:decorate>
+	</ui:define>
+</ui:composition>
