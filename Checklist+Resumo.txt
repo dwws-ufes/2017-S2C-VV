@@ -3,54 +3,54 @@ Comparison + TO-DO List:
 	+ means to-do
 	* means WIP
 
-marvin
+s2cvv
 	- faces.properties
 	- messages.properties
 
-marvin.core.application
+s2cvv.core.application
 	- CoreInformation.java
 	- InstallSystemService.java
 	- InstallSystemServiceBean.java
 	- SessionInformation.java
 	- SessionInformationBean.java
 
-marvin.core.controller
+s2cvv.core.controller
 	- InstallSystemController.java
 	- LogoutServlet.java
 	- SessionController.java
 
-marvin.core.domain
+s2cvv.core.domain
 	- Academic.java
-	- MarvinConfiguration.java
+	- S2CVVConfiguration.java
 
-marvin.core.exceptions
+s2cvv.core.exceptions
 	- LoginFailedException.java
 	- SystemInstallFailedException.java
 
-marvin.core.persistence
+s2cvv.core.persistence
 	- AcademicDAO.java
 	- AcademicJPADAO.java
-	- MarvinConfigurationDAO.java
-	- MarvinConfigurationJPADAO.java
+	- S2CVVConfigurationDAO.java
+	- S2CVVConfigurationJPADAO.java
 
-marvin.core.view
+s2cvv.core.view
 	- messages.properties
 
-marvin.people.domain
+s2cvv.people.domain
 	- ContactType.java
 	- Person.java
 	- Telephone.java
 
-marvin.people.persistence
+s2cvv.people.persistence
 	- ContactTypeDAO.java
 	- ContactTypeJPADAO.java
 	- TelephoneDAO.java
 	- ContactTypeJPADAO.java
 
 -----------------------------------------------------
-marvin
+s2cvv
 	[PRESENTATION TIER]
-	- view 
+	- view
 		: JSF stuff
 			- WebContent/WEB-INF/web.xml
 				: lots of configs
@@ -76,8 +76,8 @@ marvin
 		: Each class is annotated properly for Obj/Rel Mapping w/ JPA and has their respective JPA static metamodels (src-metamodel, autogen from eclipse)
 			- Academic
 				: website admin
-			- MarvinConfiguration
-				: holds institution acronymn
+			- S2CVVConfiguration
+				: holds parish acronymn
 	- people.domain
 		: useful package, contains domain classes which represent people and their phone numbers
 		: they have their own package because subsystems other than core might have use for them
@@ -90,7 +90,7 @@ marvin
 		: contains a pair of stateless session EJB interface/implementation for each domain class that needs a DAO (JPADAO is the implementation class)
 		: each DAO extends BaseDAO (Interface), implements BaseJPADAO (Implementation)
 			- AcademicDAO, AcademicJPADAO
-			- MarvinConfigurationDAO, MarvinConfigurationJPADAO
+			- S2CVVConfigurationDAO, S2CVVConfigurationJPADAO
 
 	- people.persistence
 		: made in the same way 'core' was

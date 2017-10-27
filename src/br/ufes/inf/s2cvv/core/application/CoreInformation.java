@@ -35,7 +35,7 @@ public class CoreInformation implements Serializable {
 	/** TODO: document this field. */
 	private static final String DEFAULT_DECORATOR_NAME = "default";
 
-	/** The DAO for MarvinConfiguration objects. */
+	/** The DAO for S2CVVConfiguration objects. */
 	@EJB
 	private S2CVVConfigurationDAO s2cvvConfigurationDAO;
 
@@ -96,7 +96,7 @@ public class CoreInformation implements Serializable {
 		return decorator;
 	}
 
-	/** Gets a random quote from Marvin. */
+	/** Gets a random quote from S2CVV. */
 	public String getQuote() {
 //		int idx = random.nextInt(quotes.size());
 //		return quotes.get(idx);

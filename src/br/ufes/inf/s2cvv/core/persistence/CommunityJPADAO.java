@@ -19,7 +19,7 @@ import br.ufes.inf.s2cvv.core.domain.Community_;
 /**
  * TODO: document this type.
  *
- * @author 
+ * @author
  * @version 1.0
  */
 @Stateless
@@ -40,7 +40,7 @@ public class CommunityJPADAO extends BaseJPADAO<Community> implements CommunityD
 		return entityManager;
 	}
 
-	/** @see br.ufes.inf.nemo.marvin.core.persistence.AcademicDAO#retrieveByEmail(java.lang.String) */
+	/** @see br.ufes.inf.s2cvv.core.persistence.AcademicDAO#retrieveByEmail(java.lang.String) */
 	@Override
 	public Community retrieveByName(String name) throws PersistentObjectNotFoundException, MultiplePersistentObjectsFoundException {
 		logger.log(Level.FINE, "Retrieving the community whose name is \"{0}\"...", name);

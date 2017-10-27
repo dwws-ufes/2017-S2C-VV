@@ -49,12 +49,12 @@ public class LoginFailedException extends Exception {
 		MD5_ERROR("md5Error"),
 
 		/**
-		 * Marvin itself is OK with the authentication, but the Java EE container is not, responding with an exception.
+		 * S2CVV itself is OK with the authentication, but the Java EE container is not, responding with an exception.
 		 */
 		CONTAINER_REJECTED("containerRejected"),
 
 		/**
-		 * Marvin could not check with the container if the authentication is OK because the HTTP request doesn't exist.
+		 * S2CVV could not check with the container if the authentication is OK because the HTTP request doesn't exist.
 		 */
 		NO_HTTP_REQUEST("noHttpRequest");
 

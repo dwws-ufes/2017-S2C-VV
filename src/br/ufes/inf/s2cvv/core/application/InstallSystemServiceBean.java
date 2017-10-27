@@ -63,7 +63,7 @@ public class InstallSystemServiceBean implements InstallSystemService {
 			priestDAO.save(admin);
 			logger.log(Level.FINE, "The administrator has been saved: {0} ({1})", new Object[] { admin.getName(), admin.getEmail() });
 
-			// Saves Marvin's configuration.
+			// Saves S2C-VV's configuration.
 			logger.log(Level.FINER, "Persisting configuration data...\n\t- Date = {0}\n\t- Acronym = {1}", new Object[] { config.getCreationDate(), config.getParishAcronym() });
 			s2cvvConfigurationDAO.save(config);
 			logger.log(Level.FINE, "The configuration has been saved");
