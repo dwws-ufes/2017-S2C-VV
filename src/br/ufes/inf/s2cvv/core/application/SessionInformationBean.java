@@ -13,7 +13,11 @@ import javax.enterprise.context.SessionScoped;
 import br.ufes.inf.nemo.jbutler.TextUtils;
 import br.ufes.inf.nemo.jbutler.ejb.persistence.exceptions.MultiplePersistentObjectsFoundException;
 import br.ufes.inf.nemo.jbutler.ejb.persistence.exceptions.PersistentObjectNotFoundException;
+import br.ufes.inf.s2cvv.core.domain.Priest;
+import br.ufes.inf.s2cvv.core.domain.Volunteer;
 import br.ufes.inf.s2cvv.core.exceptions.LoginFailedException;
+import br.ufes.inf.s2cvv.core.persistence.PriestDAO;
+import br.ufes.inf.s2cvv.core.persistence.VolunteerDAO;
 import br.ufes.inf.s2cvv.people.domain.Person;
 import br.ufes.inf.s2cvv.people.persistence.PersonDAO;
 
@@ -25,8 +29,14 @@ public class SessionInformationBean implements SessionInformation {
 	
 	private static final Logger logger = Logger.getLogger(SessionInformationBean.class.getCanonicalName());
 	
+//	@EJB
+//	PersonDAO personDAO;
+	
 	@EJB
-	PersonDAO personDAO;
+	PriestDAO priestDAO;
+	
+	@EJB
+	VolunteerDAO volunteerDAO;
 	
 	Person currentUser;
 
@@ -35,12 +45,21 @@ public class SessionInformationBean implements SessionInformation {
 		return currentUser;
 	}
 
+	// Actually, username is email
 	@Override
 	public void login(String username, String password) throws LoginFailedException {
 		try {
+			Boolean pri = true;
 			// Obtains the user given the e-mail address (that serves as username).
 			logger.log(Level.FINER, "Authenticating user with username \"{0}\"...", username);
-			Person user = personDAO.retrieveByEmail(username);
+			Person user = priestDAO.retrieveByEmail(username);
+			if(user == null) {
+				pri = false;
+				user = volunteerDAO.retrieveByEmail(username);
+			}
+			if(user == null) {
+				throw new PersistentObjectNotFoundException(null, null, null);
+			}
 
 			// Creates the MD5 hash of the password for comparison.
 			String md5pwd = TextUtils.produceMd5Hash(password);
@@ -59,7 +78,13 @@ public class SessionInformationBean implements SessionInformation {
 				Date now = new Date(System.currentTimeMillis());
 				logger.log(Level.FINER, "Setting last login date with username \"{0}\" as \"{1}\"...", new Object[] { currentUser.getEmail(), now });
 				currentUser.setLoginDate(now);
-				personDAO.save(currentUser);
+				if(pri) {
+					priestDAO.save((Priest) currentUser);
+				}
+				else {
+					volunteerDAO.save((Volunteer) currentUser);
+				}
+//				personDAO.save(currentUser);
 			}
 			else {
 				// Passwords don't match.
