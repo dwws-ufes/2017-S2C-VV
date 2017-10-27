@@ -13,7 +13,6 @@ public class Priest extends Person {
 	private static final long serialVersionUID = 1L;
 	
 	@Basic
-	@NotNull
 	PriestFormation formation;
 
 	public PriestFormation getFormation() {

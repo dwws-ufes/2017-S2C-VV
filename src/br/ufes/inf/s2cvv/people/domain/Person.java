@@ -25,12 +25,10 @@ public class Person extends PersistentObjectSupport implements Comparable<Person
 	protected Date birthDate;
 	
 	@Basic
-	@NotNull
 	@Size(max = 25)
 	protected String telephone;
 
 	@Basic
-	@NotNull
 	@Size(max = 50)
 	protected String email;
 	
@@ -44,7 +42,7 @@ public class Person extends PersistentObjectSupport implements Comparable<Person
 
 	@Basic
 	@NotNull
-	@Size(max = 25)
+	@Size(max = 40)
 	protected String password;
 	
 	public String getPassword() {
