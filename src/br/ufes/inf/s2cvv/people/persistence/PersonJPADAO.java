@@ -44,23 +44,23 @@ public class PersonJPADAO extends BaseJPADAO<Person> implements PersonDAO {
 		// Filters the query with the email.
 		cq.where(cb.equal(root.get(Person_.name), name));
 		Person result = executeSingleResultQuery(cq, name);
-		logger.log(Level.INFO, "Retrieve priest by the name\"{0}\" returned \"{1}\"", new Object[] { name, result });
+		logger.log(Level.INFO, "Retrieve person by the name \"{0}\" returned \"{1}\"", new Object[] { name, result });
 		return result;
 	}
 
 	@Override
 	public Person retrieveByEmail(String email)
 			throws PersistentObjectNotFoundException, MultiplePersistentObjectsFoundException {
-		logger.log(Level.FINE, "Retrieving the person whose name is \"{0}\"...", email);
+		logger.log(Level.FINE, "Retrieving the person whose email is \"{0}\"...", email);
 		// Constructs the query over the Academic class.
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Person> cq = cb.createQuery(Person.class);
 		Root<Person> root = cq.from(Person.class);
 		
 		// Filters the query with the email.
-		cq.where(cb.equal(root.get(Person_.name), email));
+		cq.where(cb.equal(root.get(Person_.email), email));
 		Person result = executeSingleResultQuery(cq, email);
-		logger.log(Level.INFO, "Retrieve priest by the name\"{0}\" returned \"{1}\"", new Object[] { email, result });
+		logger.log(Level.INFO, "Retrieve person by the email \"{0}\" returned \"{1}\"", new Object[] { email, result });
 		return result;
 	}
 

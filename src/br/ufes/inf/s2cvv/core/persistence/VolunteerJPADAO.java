@@ -45,7 +45,7 @@ public class VolunteerJPADAO extends BaseJPADAO<Volunteer> implements VolunteerD
 		// Filters the query with the email.
 		cq.where(cb.equal(root.get(Volunteer_.email), email));
 		Volunteer result = executeSingleResultQuery(cq, email);
-		logger.log(Level.INFO, "Retrieve volunteer by the email\"{0}\" returned \"{1}\"", new Object[] { email, result });
+		logger.log(Level.INFO, "Retrieve volunteer by the email \"{0}\" returned \"{1}\"", new Object[] { email, result });
 		return result;
 	}
 }

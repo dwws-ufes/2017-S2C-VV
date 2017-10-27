@@ -45,7 +45,7 @@ public class PriestJPADAO extends BaseJPADAO<Priest> implements PriestDAO {
 		// Filters the query with the email.
 		cq.where(cb.equal(root.get(Priest_.email), email));
 		Priest result = executeSingleResultQuery(cq, email);
-		logger.log(Level.INFO, "Retrieve priest by the email\"{0}\" returned \"{1}\"", new Object[] { email, result });
+		logger.log(Level.INFO, "Retrieve priest by the email \"{0}\" returned \"{1}\"", new Object[] { email, result });
 		return result;
 	}
 
