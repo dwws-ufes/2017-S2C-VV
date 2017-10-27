@@ -15,15 +15,15 @@ import br.ufes.inf.nemo.jbutler.ejb.persistence.PersistentObjectSupport;
 public class Person extends PersistentObjectSupport implements Comparable<Person> {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Basic
 	@NotNull
 	@Size(max = 100)
 	protected String name;
-	
+
 	@Temporal(TemporalType.DATE)
 	protected Date birthDate;
-	
+
 	@Basic
 	@Size(max = 25)
 	protected String telephone;
@@ -31,7 +31,7 @@ public class Person extends PersistentObjectSupport implements Comparable<Person
 	@Basic
 	@Size(max = 50)
 	protected String email;
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -41,9 +41,10 @@ public class Person extends PersistentObjectSupport implements Comparable<Person
 	}
 
 	@Basic
-	@Size(max = 25)
+	@NotNull
+	@Size(max = 40)
 	protected String password;
-	
+
 	public String getPassword() {
 		return password;
 	}

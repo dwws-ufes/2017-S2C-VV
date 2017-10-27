@@ -68,7 +68,6 @@ public class CoreInformation implements Serializable {
 		catch (PersistentObjectNotFoundException e) {
 			systemInstalled = false;
 		}
-
 		// Load quotes.
 		quotes = new ArrayList<>();
 		File quotesFile = ResourceUtil.getResourceAsFile(QUOTES_FILE_PATH);
