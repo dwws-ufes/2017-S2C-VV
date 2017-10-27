@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	template="/resources/#{coreInfo.decorator}/decorator.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="#{msgsCore['manageVolunteers.title']}" />
+	</ui:define>
+
+	<ui:define name="description">
+		<h:outputText
+			value="#{msgsCore['manageVolunteers.title.description']}" />
+	</ui:define>
+
+	<ui:define name="body">
+		<!-- Filter bar: used to filter the listing (displayed when there is at least one filter available). -->
+		<h:panelGroup id="filterBar"
+			rendered="#{(not empty manageVolunteersController.filters)}">
+			<ui:decorate
+				template="/resources/#{coreInfo.decorator}/form-nobox.xhtml">
+				<ui:param name="formName" value="filterForm" />
+
+				<ui:decorate
+					template="/resources/#{coreInfo.decorator}/formfield-filter.xhtml">
+					<p:selectOneMenu id="filter" required="true"
+						value="#{manageVolunteersController.filterKey}">
+						<f:selectItems value="#{manageVolunteersController.filters}"
+							var="filter" itemLabel="#{filter.label}"
+							itemValue="#{filter.key}" />
+						<f:ajax event="change" execute="@form"
+							listener="#{manageVolunteersController.changeFilter}"
+							render="@form :listingForm" />
+					</p:selectOneMenu>
+					<p:inputText id="filterText" required="false"
+						value="#{manageVolunteersController.filterParam}"
+						rendered="#{manageVolunteersController.filter.options == null}" />
+					<p:selectOneMenu id="filterSelect" required="false"
+						value="#{manageVolunteersController.filterParam}"
+						rendered="#{manageVolunteersController.filter.options != null}">
+						<f:selectItems
+							value="#{manageVolunteersController.filter.reversedOptionsLabels}" />
+					</p:selectOneMenu>
+					<p:commandButton action="#{manageVolunteersController.filter}"
+						value="#{msgs['jbutler.crud.button.filter']}" process="@form"
+						update=":listingForm @form" icon="fa fa-fw fa-search" />
+					<p:commandButton
+						action="#{manageVolunteersController.cancelFilter}"
+						value="#{msgs['jbutler.crud.button.cancelFilter']}"
+						process="@form" update=":listingForm @form"
+						icon="fa fa-fw fa-close"
+						rendered="#{manageVolunteersController.filtering}" />
+					<p:commandButton
+						action="#{manageVolunteersController.clearFilter}"
+						value="#{msgs['jbutler.crud.button.clearFilter']}" process="@form"
+						update=":listingForm @form" icon="fa fa-fw fa-eraser"
+						rendered="#{not manageVolunteersController.filtering}" />
+				</ui:decorate>
+				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.filterFocus']}"
+					handler="if (findObjectById('filterForm:filterText') != null) findObjectById('filterForm:filterText').focus(); else findObjectById('filterForm:filterSelect').focus();" />
+				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.clearFilter']}"
+					action="#{manageVolunteersController.cancelFilter}"
+					process="@form" update=":listingForm @form"
+					rendered="#{manageVolunteersController.filtering}" />
+				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.clearFilter']}"
+					action="#{manageVolunteersController.clearFilter}" process="@form"
+					update=":listingForm @form"
+					rendered="#{not manageVolunteersController.filtering}" />
+			</ui:decorate>
+		</h:panelGroup>
+
+		<!-- The listing form. -->
+		<ui:decorate
+			template="/resources/#{coreInfo.decorator}/form-nobox.xhtml">
+			<ui:param name="formName" value="listingForm" />
+
+			<p:dataTable widgetVar="listingTable"
+				value="#{manageVolunteersController.lazyEntities}" var="entity"
+				rows="#{manageVolunteersController.maxDataTableRowsPerPage}"
+				rowsPerPageTemplate="#{manageVolunteersController.halfMaxDataTableRowsPerPage},#{manageVolunteersController.maxDataTableRowsPerPage},#{manageVolunteersController.doubleMaxDataTableRowsPerPage}"
+				lazy="true" paginator="true"
+				selection="#{manageVolunteersController.selectedEntity}"
+				selectionMode="single"
+				paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+				paginatorPosition="bottom"
+				loadingMessage="#{msgs['jbutler.text.ajax.loading']}"
+				emptyMessage="#{manageVolunteersController.filtering ? msgsCore['manageVolunteers.text.noEntitiesFiltered'] : msgsCore['manageVolunteers.text.noEntities']}">
+
+				<p:column
+					headerText="#{msgsCore['manageVolunteers.form.name']}">
+					<h:outputText value="#{entity.name}" />
+				</p:column>
+
+				<p:column
+					headerText="#{msgsCore['manageVolunteers.form.email']}">
+					<h:outputText value="#{entity.email}" />
+				</p:column>
+
+				<p:column
+					headerText="#{msgsCore['manageVolunteers.form.telephone']}">
+					<h:outputText value="#{entity.telephone}" />
+				</p:column>
+
+				<p:ajax event="rowSelect" update=":listingForm:buttonsGroup" />
+				<p:ajax event="rowUnselect" update=":listingForm:buttonsGroup" />
+			</p:dataTable>
+			<p:hotkey bind="ctrl+left" handler="goToFirstPage(listingTable);" />
+			<p:hotkey bind="left" handler="goToPreviousPage(listingTable);" />
+			<p:hotkey bind="right" handler="goToNextPage(listingTable);" />
+			<p:hotkey bind="ctrl+right" handler="goToLastPage(listingTable);" />
+
+			<!-- Buttons shown below the listing. -->
+			<h:panelGroup id="buttonsGroup">
+				<ui:decorate
+					template="/resources/#{coreInfo.decorator}/formbuttonpanel-04.xhtml">
+					<p:commandButton action="#{manageVolunteersController.create}"
+						value="#{msgs['jbutler.crud.button.create']}"
+						icon="fa fa-fw fa-user-plus" />
+					<p:commandButton action="#{manageVolunteersController.retrieve}"
+						value="#{msgs['jbutler.crud.button.retrieve']}"
+						icon="fa fa-fw fa-file-text"
+						disabled="#{manageVolunteersController.selectedEntity == null}" />
+					<p:commandButton action="#{manageVolunteersController.update}"
+						value="#{msgs['jbutler.crud.button.update']}"
+						icon="fa fa-fw fa-refresh"
+						disabled="#{manageVolunteersController.selectedEntity == null}" />
+					<p:commandButton action="#{manageVolunteersController.trash}"
+						value="#{msgs['jbutler.crud.button.delete']}"
+						icon="fa fa-fw fa-trash-o"
+						disabled="#{manageVolunteersController.selectedEntity == null}"
+						process="@this" update=":listingForm:trashGroup" />
+				</ui:decorate>
+				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.create']}"
+					action="#{manageVolunteersController.create}" />
+				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.retrieve']}"
+					action="#{manageVolunteersController.retrieve}"
+					rendered="#{manageVolunteersController.selectedEntity != null}" />
+				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.update']}"
+					action="#{manageVolunteersController.update}"
+					rendered="#{manageVolunteersController.selectedEntity != null}" />
+				<p:hotkey bind="#{msgs['jbutler.crud.hotkey.delete']}"
+					action="#{manageVolunteersController.trash}"
+					rendered="#{manageAcademicsController.selectedEntity != null}"
+					process="@this" update=":listingForm:trashGroup" />
+			</h:panelGroup>
+
+			<!-- The trash panel: shows entities that have been selected for deletion. -->
+			<h:panelGroup id="trashGroup">
+				<h:panelGroup
+					rendered="#{not empty manageVolunteersController.trashCan}">
+					<ui:decorate
+						template="/resources/#{coreInfo.decorator}/form-danger.xhtml">
+						<ui:param name="formName" value="trashForm" />
+						<ui:param name="formLabel"
+							value="#{msgs['jbutler.crud.text.trashHeader']}" />
+						<p:dataList value="#{manageVolunteersController.trashCan}"
+							var="entity" type="ordered">
+			            	#{entity.name} 
+			            </p:dataList>
+						<ui:decorate
+							template="/resources/#{coreInfo.decorator}/formbuttonpanel-02.xhtml">
+							<p:commandButton
+								action="#{manageVolunteersController.cancelDeletion}"
+								value="#{msgs['jbutler.crud.button.cancelDeletion']}"
+								icon="fa fa-fw fa-close" process="@this" update=":listingForm" />
+							<p:commandButton action="#{manageVolunteersController.delete}"
+								value="#{msgs['jbutler.crud.button.confirmDeletion']}"
+								icon="fa fa-fw fa-trash-o" process="@this"
+								update=":globalMessages :listingForm" />
+						</ui:decorate>
+						<p:hotkey bind="#{msgs['jbutler.crud.hotkey.cancelDeletion']}"
+							action="#{manageVolunteersController.cancelDeletion}"
+							process="@this" update=":listingForm" />
+						<p:hotkey bind="#{msgs['jbutler.crud.hotkey.confirmDeletion']}"
+							action="#{manageVolunteersController.delete}" ajax="false" />
+					</ui:decorate>
+				</h:panelGroup>
+			</h:panelGroup>
+		</ui:decorate>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	template="/resources/#{coreInfo.decorator}/decorator.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="#{msgsCore['manageVolunteers.title.create']}"
+			rendered="#{(! manageVolunteersController.readOnly) and (manageVolunteersController.selectedEntity.id == null)}" />
+		<h:outputText value="#{msgsCore['manageVolunteers.title.update']}"
+			rendered="#{(! manageVolunteersController.readOnly) and (manageVolunteersController.selectedEntity.id != null)}" />
+		<h:outputText value="#{msgsCore['manageVolunteers.title.retrieve']}"
+			rendered="#{manageVolunteersController.readOnly}" />
+	</ui:define>
+
+	<ui:define name="description">
+		<h:outputText
+			value="#{msgsCore['manageVolunteers.title.create.description']}"
+			rendered="#{(! manageVolunteersController.readOnly) and (manageVolunteersController.selectedEntity.id == null)}" />
+		<h:outputText
+			value="#{msgsCore['manageVolunteers.title.update.description']}"
+			rendered="#{(! manageVolunteersController.readOnly) and (manageVolunteersController.selectedEntity.id != null)}" />
+		<h:outputText
+			value="#{msgsCore['manageVolunteers.title.retrieve.description']}"
+			rendered="#{manageVolunteersController.readOnly}" />
+	</ui:define>
+
+	<ui:define name="body">
+		<ui:decorate template="/resources/#{coreInfo.decorator}/form.xhtml">
+			<ui:param name="formName" value="form" />
+			<ui:param name="formLabel"
+				value="#{msgsCore['manageVolunteers.form.title']}" />
+			<p:hotkey bind="#{msgs['jbutler.crud.hotkey.focusFirstField']}"
+				handler="findObjectById('form:name').focus();" />
+
+			<ui:decorate
+				template="/resources/#{coreInfo.decorator}/formfield.xhtml">
+				<ui:param name="fieldName" value="name" />
+				<ui:param name="label"
+					value="#{msgsCore['manageVolunteers.form.name']}" />
+				<p:inputText id="name"
+					value="#{manageVolunteersController.selectedEntity.name}"
+					required="true"
+					pt:placeholder="#{msgsCore['manageVolunteers.form.name.placeholder']}"
+					disabled="#{manageVolunteersController.readOnly}">
+					<p:ajax event="blur" update="nameField" />
+				</p:inputText>
+			</ui:decorate>
+
+			<ui:decorate
+				template="/resources/#{coreInfo.decorator}/formfield.xhtml">
+				<ui:param name="fieldName" value="email" />
+				<ui:param name="label"
+					value="#{msgsCore['manageVolunteers.form.email']}" />
+				<p:inputText id="email"
+					value="#{manageVolunteersController.selectedEntity.email}"
+					required="true"
+					pt:placeholder="#{msgsCore['manageVolunteers.form.email.placeholder']}"
+					disabled="#{manageVolunteersController.readOnly}">
+					<p:ajax event="blur" update="emailField" />
+				</p:inputText>
+			</ui:decorate>
+
+			<ui:decorate
+				template="/resources/#{coreInfo.decorator}/formfield.xhtml">
+				<ui:param name="fieldName" value="telephone" />
+				<ui:param name="label"
+					value="#{msgsCore['manageVolunteers.form.telephone']}" />
+				<p:inputText id="telephone"
+					value="#{manageVolunteersController.selectedEntity.telephone}"
+					required="true"
+					pt:placeholder="#{msgsCore['manageVolunteers.form.telephone.placeholder']}"
+					disabled="#{manageVolunteersController.readOnly}">
+					<p:ajax event="blur" update="telephoneField" />
+				</p:inputText>
+			</ui:decorate>
+
+			<h:panelGroup rendered="#{! manageVolunteersController.readOnly}">
+				<ui:decorate
+					template="/resources/#{coreInfo.decorator}/formbuttonpanel-02.xhtml">
+					<p:commandButton id="cancelButton"
+						action="#{manageVolunteersController.list}"
+						value="#{msgs['jbutler.crud.button.cancel']}" immediate="true"
+						icon="fa fa-fw fa-close" />
+					<p:commandButton id="saveButton"
+						action="#{manageVolunteersController.save}"
+						value="#{msgs['jbutler.crud.button.save']}"
+						update=":form :globalMessages" icon="fa fa-fw fa-save" />
+					<p:defaultCommand target="saveButton" />
+					<p:hotkey bind="#{msgs['jbutler.crud.hotkey.backToList']}"
+						action="#{manageVolunteersController.list}" immediate="true" />
+				</ui:decorate>
+			</h:panelGroup>
+			<h:panelGroup rendered="#{manageVolunteersController.readOnly}">
+				<ui:decorate
+					template="/resources/#{coreInfo.decorator}/formbuttonpanel-01.xhtml">
+					<p:commandButton id="backButton"
+						action="#{manageVolunteersController.list}"
+						value="#{msgs['jbutler.crud.button.back']}" immediate="true"
+						icon="fa fa-fw fa-arrow-circle-left" />
+					<p:hotkey bind="#{msgs['jbutler.crud.hotkey.backToList']}"
+						action="#{manageVolunteersController.list}" immediate="true" />
+				</ui:decorate>
+			</h:panelGroup>
+		</ui:decorate>
+	</ui:define>
+</ui:composition>
