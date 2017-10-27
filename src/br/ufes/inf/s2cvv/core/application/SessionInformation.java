@@ -12,6 +12,6 @@ public interface SessionInformation extends Serializable {
 
 	Person getCurrentUser();
 	
-	void login(String username, String password) throws LoginFailedException;
+	void login(String username, String password, Boolean typePriest) throws LoginFailedException;
 	
 }

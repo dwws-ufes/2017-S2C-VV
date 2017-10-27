@@ -45,6 +45,17 @@ public class SessionController extends JSFController {
 
 	/** Input: password for authentication. */
 	private String password;
+	
+	/** Input: function for authentication. */
+	private String function;
+
+	public String getFunction() {
+		return function;
+	}
+
+	public void setFunction(String function) {
+		this.function = function;
+	}
 
 	/** Getter for email. */
 	public String getEmail() {
@@ -126,8 +137,13 @@ public class SessionController extends JSFController {
 	public String login() {
 		try {
 			// Uses the Login service to authenticate the user.
-			logger.log(Level.FINEST, "User attempting login with email \"{0}\"...", email);
-			sessionInformation.login(email, password);
+			logger.log(Level.FINEST, "User attempting login with email \"{0}\" and function\"{1}\"...", new Object[] { email,function } );
+			if(function.equalsIgnoreCase("p") || function.equalsIgnoreCase("priest")) {
+				sessionInformation.login(email, password,true);
+			}
+			else if(function.equalsIgnoreCase("v") || function.equalsIgnoreCase("Volunteer")) {
+				sessionInformation.login(email, password,false);
+			}
 		}
 		catch (LoginFailedException e) {
 			// Checks if it's a normal login exception (wrong username or password) or not.

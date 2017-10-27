@@ -47,6 +47,16 @@
 			</ui:decorate>
 
 			<ui:decorate
+				template="/resources/#{coreInfo.decorator}/formfield.xhtml">
+				<ui:param name="fieldName" value="function" />
+				<ui:param name="label" value="#{msgsCore['login.field.function']}" />
+				<p:selectOneRadio id="function" value="#{sessionController.function}" required="true" >
+					<f:selectItem itemLabel="Priest" itemValue="Priest" />
+					<f:selectItem itemLabel="Volunteer" itemValue="Volunteer" />
+				</p:selectOneRadio>
+			</ui:decorate>
+
+			<ui:decorate
 				template="/resources/#{coreInfo.decorator}/formbuttonpanel-01.xhtml">
 				<p:commandButton action="#{sessionController.login}"
 					value="#{msgsCore['login.button.login']}"

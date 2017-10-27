@@ -3,7 +3,8 @@ package br.ufes.inf.s2cvv.core.persistence;
 import javax.ejb.Local;
 
 import br.ufes.inf.nemo.jbutler.ejb.persistence.BaseDAO;
-//import br.ufes.inf.nemo.jbutler.ejb.persistence.exceptions.MultiplePersistentObjectsFoundException;
+import br.ufes.inf.nemo.jbutler.ejb.persistence.exceptions.MultiplePersistentObjectsFoundException;
+import br.ufes.inf.nemo.jbutler.ejb.persistence.exceptions.PersistentObjectNotFoundException;
 //import br.ufes.inf.nemo.jbutler.ejb.persistence.exceptions.PersistentObjectNotFoundException;
 import br.ufes.inf.s2cvv.core.domain.Volunteer;
 
@@ -23,6 +24,6 @@ public interface VolunteerDAO extends BaseDAO<Volunteer> {
 	 * @throws PersistentObjectNotFoundException
 	 * @throws MultiplePersistentObjectsFoundException
 	 */
-//	Volunteer retrieveByName(String name) throws MultiplePersistentObjectsFoundException, PersistentObjectNotFoundException;
+	Volunteer retrieveByEmail(String email) throws MultiplePersistentObjectsFoundException, PersistentObjectNotFoundException;
 
 }
