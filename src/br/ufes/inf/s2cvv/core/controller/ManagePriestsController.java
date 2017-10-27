@@ -1,7 +1,12 @@
 package br.ufes.inf.s2cvv.core.controller;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.ejb.EJB;
+import javax.enterprise.context.Conversation;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.ufes.inf.nemo.jbutler.ejb.application.CrudService;
@@ -30,6 +35,26 @@ public class ManagePriestsController extends CrudController<Priest> {
 	@Override
 	protected void initFilters() {
 		addFilter(new LikeFilter("managePriests.filter.byName", "name", getI18nMessage("msgsCore", "managePriests.text.filter.byName")));
+	}
+	
+	private static final Logger logger = Logger.getLogger(ManagePriestsController.class.getCanonicalName());
+
+	@Inject
+	private Conversation conversation;
+	
+	/** Path to the folder where the view files (web pages) for this action are placed. */
+	private static final String VIEW_PATH = "/core/managePriests/";
+	
+	/**  */
+	public String begin() {
+		logger.log(Level.FINEST, "Beginning conversation. Current conversation transient? -> {0}", new Object[] { conversation.isTransient() });
+
+		// Begins the conversation, dropping any previous conversation, if existing.
+		if (!conversation.isTransient()) conversation.end();
+		conversation.begin();
+
+		// Go to the first view.
+		return VIEW_PATH + "form.xhtml?faces-redirect=true";
 	}
 	
 }
