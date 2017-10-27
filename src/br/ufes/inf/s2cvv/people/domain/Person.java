@@ -41,7 +41,6 @@ public class Person extends PersistentObjectSupport implements Comparable<Person
 	}
 
 	@Basic
-	@NotNull
 	@Size(max = 50)
 	protected String password;
 
