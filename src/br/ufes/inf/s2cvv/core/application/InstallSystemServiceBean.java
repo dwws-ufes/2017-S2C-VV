@@ -52,9 +52,11 @@ public class InstallSystemServiceBean implements InstallSystemService {
 			Date now = new Date(System.currentTimeMillis());
 			admin.setUpdateDate(now);
 			admin.setCreationDate(now);
+//			admin.setEmail("");
+//			admin.setTelephone("");
 			config.setCreationDate(now);
 			logger.log(Level.FINE, "Admin's last update date have been set as: {0}", new Object[] { now });
-
+			
 			// Saves the administrator.
 			logger.log(Level.FINER, "Persisting admin data...\n\t- Short name = {0}\n\t- Last update date = {1}", new Object[] { admin.getName(), admin.getUpdateDate() });
 			priestDAO.save(admin);

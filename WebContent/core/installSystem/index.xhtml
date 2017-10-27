@@ -65,6 +65,30 @@
 					</p:inputText>
 				</ui:decorate>
 
+				<!-- <ui:decorate
+					template="/resources/#{coreInfo.decorator}/formfield.xhtml">
+					<ui:param name="fieldName" value="telephone" />
+					<ui:param name="label"
+						value="#{msgsCore['installSystem.field.admin.telephone']}" />
+					<p:inputText id="telephone"
+						value="#{installSystemController.admin.telephone}" required="true"
+						pt:placeholder="#{msgsCore['installSystem.field.admin.telephone.placeholder']}">
+						<f:ajax event="blur" render="telephoneField" />
+					</p:inputText>
+				</ui:decorate> -->
+
+				<!-- <ui:decorate 
+					template="/resources/#{coreInfo.decorator}/formfield.xhtml">
+					<ui:param name="fieldName" value="formation" />
+					<ui:param name="label"
+						value="#{msgsCore['installSystem.field.admin.formation']}" />
+					<p:inputText id="formation"
+						value="#{installSystemController.admin.formation}" required="true"
+						pt:placeholder="#{msgsCore['installSystem.field.admin.formation.placeholder']}">
+						<f:ajax event="blur" render="formationField" />
+					</p:inputText>
+				</ui:decorate> -->
+
 				<ui:decorate
 					template="/resources/#{coreInfo.decorator}/formfield.xhtml">
 					<ui:param name="fieldName" value="password" />
