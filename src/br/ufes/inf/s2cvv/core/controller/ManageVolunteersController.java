@@ -32,4 +32,9 @@ public class ManageVolunteersController extends CrudController<Volunteer> {
 		addFilter(new LikeFilter("manageVolunteers.filter.byName", "name", getI18nMessage("msgsCore", "manageVolunteers.text.filter.byName")));
 	}
 	
+//	@Override
+//	protected void prepEntity() {
+//		// TODO Auto-generated method stub
+//		super.prepEntity();
+//	}
 }

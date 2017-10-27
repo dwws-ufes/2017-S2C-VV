@@ -43,7 +43,7 @@ public class ManagePriestsController extends CrudController<Priest> {
 	private Conversation conversation;
 	
 	/** Path to the folder where the view files (web pages) for this action are placed. */
-	private static final String VIEW_PATH = "/core/managePriests/";
+//	private static final String VIEW_PATH = "/core/managePriests/";
 	
 	/**  */
 	public String begin() {
@@ -54,7 +54,8 @@ public class ManagePriestsController extends CrudController<Priest> {
 		conversation.begin();
 
 		// Go to the first view.
-		return VIEW_PATH + "form.xhtml?faces-redirect=true";
+		//return VIEW_PATH + "form.xhtml?faces-redirect=true";
+		return create();
 	}
 	
 }
