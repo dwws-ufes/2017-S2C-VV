@@ -49,7 +49,7 @@ WildFly comes with a [H2 Database](http://www.h2database.com/) as default driver
 1. Create the `com/mysql/main` structure in `$WILDFLY_HOME/modules`;
 1. Unpack the *MySQL Connector/J JDBC Driver* and copy/move the file mysql-connector-java-\*-bin.jar to `$WILDFLY_HOME/modules/com/mysql/main`
 1. Create a file named *module.xml* with the following content (remember to adjust the file name accordingly):
-	`<?xml version="1.0" encoding="UTF-8"?>
+	```<?xml version="1.0" encoding="UTF-8"?>
 	<module xmlns="urn:jboss:module:1.1" name="com.mysql">
 			<resources>
 				<resource-root path="mysql-connector-java-5.1.41-bin.jar"/>
@@ -57,4 +57,4 @@ WildFly comes with a [H2 Database](http://www.h2database.com/) as default driver
 			<dependencies>
 				<module name="javax.api"/>
 			</dependencies>
-		</module>`
+		</module>```
