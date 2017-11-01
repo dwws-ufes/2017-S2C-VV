@@ -40,16 +40,16 @@ By integrating *Eclipse* and *Wildfly*, the application deployment will be easie
 	1. Open the `Red Hat JBoss Middleware` folder and select `JBoss AS, Wildfly, & EAP Server Tools`;
 	1. Click `Next`, download, read and accept the license terms, then click `Finish` and restart *Eclipse*;
 	1. Repeat steps **2** and **3** to open the *New Server* dialog again;
-1. Open the `JBoss Community` folder and select the `WildFly` version you've downloaded and click `Next` twice;
+1. Open the `JBoss Community` folder and select the *WildFly* version you've downloaded and click `Next` twice;
 1. Fill in the server's directory (`$WILDFLY_HOME`) and click `Finish`.
 
-If everything is correct, a *Wildfly* server will appear in *Server*'s view and, after starting it, accessing `localhost:8080` on a web browser shows the *Wildfly*'s welcome homepage.
+If everything is correct, a *Wildfly* server will appear in *Server*'s view. Starting it and accessing `localhost:8080` on a web browser shows the *Wildfly*'s welcome homepage.
 
 ### Set up *Wildfly* with *MySQL*
-*WildFly* comes with a [H2 Database](http://www.h2database.com/) as default driver. We use *MySQL*, however, so we need to add its driver to *WildFly*'s configuration.
+*WildFly* comes with a [*H2 Database*](http://www.h2database.com/) as default driver. We use *MySQL*, however, so we need to add its driver to *WildFly*'s configuration.
 1. Create the `com/mysql/main` structure in `$WILDFLY_HOME/modules`;
 1. Unpack the *MySQL Connector/J JDBC Driver* and copy/move the file *mysql-connector-java-\*-bin.jar* to `$WILDFLY_HOME/modules/com/mysql/main`
-1. Create a file named *module.xml* with the following content (remember to adjust the file name accordingly):
+1. Create a file named *module.xml* with the following content (remember to adjust the connector version accordingly):
 	```xml
 	<?xml version="1.0" encoding="UTF-8"?>
 	<module xmlns="urn:jboss:module:1.1" name="com.mysql">
@@ -61,7 +61,7 @@ If everything is correct, a *Wildfly* server will appear in *Server*'s view and,
 		</dependencies>
 	</module>
 	```
-1. Open the file `$WILDFLY_HOME/standalone/configuration/standalone.xml` and look for the `<subsystem xmlns="urn:jboss:domain:datasources:4.0">` tag. Locate `<datasources>` inside this tag and then `<drivers>`. You should see the *H2 Database* driver configuration there. Add the following configuration for *MySQL Connector/J* next to it:
+1. Open the file `$WILDFLY_HOME/standalone/configuration/standalone.xml` and look for the `<subsystem xmlns="urn:jboss:domain:datasources:4.0">` tag. Locate `<datasources>` inside this tag and then `<drivers>`. You should see the *H2 Database* driver configuration there. Add the following configuration for *MySQL Connector/J JDBC Driver* next to it:
 	```xml
 	<driver name="mysql" module="com.mysql">
 		<driver-class>com.mysql.jdbc.Driver</driver-class>
@@ -69,4 +69,4 @@ If everything is correct, a *Wildfly* server will appear in *Server*'s view and,
 	```
 
 ### Use it!
-You should now be ready to develop a *Java EE* project in *Eclipse*, deploying it in *WildFly* and configuring it to use *MySQL* database for persistence. The above steps need to be done just once for all projects which will use these tools.
+You're now ready to start developing *Java EE* projects in *Eclipse*, deploying them on *WildFly* with *MySQL* databases. The steps above are needed only once for all projects.
