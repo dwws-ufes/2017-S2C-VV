@@ -47,16 +47,17 @@ If everything is correct, a Wildfly server will be shown in *Server*'s view and,
 ### Set up Wildfly with MySQL
 WildFly comes with a [H2 Database](http://www.h2database.com/) as default driver. We use MySQL, however, so we need to add its driver to WildFly's configuration.
 1. Create the `com/mysql/main` structure in `$WILDFLY_HOME/modules`;
-1. Unpack the *MySQL Connector/J JDBC Driver* and copy/move the file mysql-connector-java-\*-bin.jar to `$WILDFLY_HOME/modules/com/mysql/main`
+1. Unpack the *MySQL Connector/J JDBC Driver* and copy/move the file *mysql-connector-java-\*-bin.jar* to `$WILDFLY_HOME/modules/com/mysql/main`
 1. Create a file named *module.xml* with the following content (remember to adjust the file name accordingly):
-	```
+	```xml
 	<?xml version="1.0" encoding="UTF-8"?>
 	<module xmlns="urn:jboss:module:1.1" name="com.mysql">
 		<resources>
-			<resource-root path="mysql-connector-java-5.1.41-bin.jar"/>
+			<resource-root path="mysql-connector-java-5.1.44-bin.jar"/>
 		</resources>
 		<dependencies>
 			<module name="javax.api"/>
 		</dependencies>
 	</module>
 	```
+1. Open the file *$WILDFLY_HOME/standalone/configuration/standalone.xml* and look for the tag <subsystem xmlns="urn:jboss:domain:datasources:4.0">. Inside this tag, locate <datasources> and then <drivers>. You should find the H2 Database driver configuration there. Next to it, add the configuration for MySQL Connector/J, as following:
