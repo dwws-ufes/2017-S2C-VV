@@ -1,16 +1,17 @@
 # 2017-S2C-VV
-Assignment for the 2017 edition of the "Web Development and the Semantic Web" course
 
 **Sistema da Comunidade Católica - Vila Velha**
 
-#### Authors
+Assignment for the 2017 edition of the "Web Development and the Semantic Web" course
+
+### Authors
 - [*Allan Rosa*](https://github.com/thisIsChu)
 - [*Marco Thomé*](https://github.com/mabrunoro)
 
-#### Professor
+### Professor
 - [*Vitor Souza*](https://github.com/vitorsouza)
 
-#### Completed Tasks
+### Implemented
 - Base project
 - Base database
 - Base website
@@ -30,7 +31,7 @@ In order to run this project, here's what you're gonna need:
 It's assumed that the user can handle the installation process of each tool by himself.
 We'll also assume `$ECLIPSE_HOME` and `$WILDFLY_HOME` as the folder which Eclipse and Wildfly were deployed, respectively.
 
-#### Setup Eclipse with Wildfly
+### Set up Eclipse with Wildfly
 By integrating Eclipse and Wildfly, the application deployment will be easier.
 1. Open Eclipse;
 1. Open the Servers view (if not visible, Window > Show View menu);
@@ -38,10 +39,22 @@ By integrating Eclipse and Wildfly, the application deployment will be easier.
 1. Open the `Red Hat JBoss Middleware` folder and select `JBoss AS, Wildfly, & EAP Server Tools`;
 1. Click `Next`, download, read and accept the license terms, then click `Finish` and restart Eclipse;
 1. Repeat steps **2** and **3** to open the *New Server* dialog again;
-1. Open the `JBoss Community` folder and select `WildFly X` and click `Next` twice;
+1. Open the `JBoss Community` folder and select the `WildFly` version you've downloaded and click `Next` twice;
 1. Fill in the server's directory (`$WILDFLY_HOME`) and click `Finish`.
 
 If everything is correct, a Wildfly server will be shown in *Server*'s view and, after starting it, accessing `localhost:8080` on a web browser shows the Wildfly's welcome homepage.
 
-#### Setup Wildfly with MySQL
-WildFly comes with a [H2 Database](http://www.h2database.com/) as default driver. In this tutorial, however, we use MySQL, so we need to add its driver to WildFly's configuration.
+### Set up Wildfly with MySQL
+WildFly comes with a [H2 Database](http://www.h2database.com/) as default driver. We use MySQL, however, so we need to add its driver to WildFly's configuration.
+1. Create the `com/mysql/main` structure in `$WILDFLY_HOME/modules`;
+1. Unpack the *MySQL Connector/J JDBC Driver* and copy/move the file mysql-connector-java-\*-bin.jar to `$WILDFLY_HOME/modules/com/mysql/main`
+1. Create a file named *module.xml* with the following content (remember to adjust the file name accordingly):
+	`<?xml version="1.0" encoding="UTF-8"?>
+	<module xmlns="urn:jboss:module:1.1" name="com.mysql">
+			<resources>
+				<resource-root path="mysql-connector-java-5.1.41-bin.jar"/>
+			</resources>
+			<dependencies>
+				<module name="javax.api"/>
+			</dependencies>
+		</module>`
