@@ -42,3 +42,6 @@ By integrating Eclipse and Wildfly, the application deployment will be easier.
 1. Fill in the server's directory (`$WILDFLY_HOME`) and click `Finish`.
 
 If everything is correct, a Wildfly server will be shown in *Server*'s view and, after starting it, accessing `localhost:8080` on a web browser shows the Wildfly's welcome homepage.
+
+#### Setup Wildfly with MySQL
+WildFly comes with a [H2 Database](http://www.h2database.com/) as default driver. In this tutorial, however, we use MySQL, so we need to add its driver to WildFly's configuration.
