@@ -8,7 +8,7 @@ import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="Dali", date="2017-10-27T15:50:51.473-0200")
+@Generated(value="Dali", date="2017-12-26T11:23:55.566-0200")
 @StaticMetamodel(Community.class)
 public class Community_ extends PersistentObjectSupport_ {
 	public static volatile SingularAttribute<Community, String> name;
