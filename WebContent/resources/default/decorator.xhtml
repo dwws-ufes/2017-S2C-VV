@@ -285,6 +285,7 @@
 								<span><h:outputText
 										value="#{msgsCore['core.menu.installSystem']}" /></span>
 							</h:commandLink></li>
+							
 						<li><h:link outcome="/core/login/index"
 								rendered="#{coreInfo.systemInstalled and not sessionController.loggedIn}">
 								<i class="fa fa-key"></i>
@@ -292,12 +293,31 @@
 										value="#{msgsCore['core.menu.login']}" /></span>
 							</h:link></li>
 							
-							<li><h:commandLink action="#{managePriestsController.begin}"
+						<li><h:commandLink action="#{managePriestsController.begin}"
 								rendered="#{coreInfo.systemInstalled and sessionController.loggedIn}">
-								<i class="fa fa-user-plus"></i>
+								<i class="fa fa-user-circle-o"></i>
 								<span><h:outputText
 										value="#{msgsCore['core.menu.managePriests']}" /></span>
 							</h:commandLink></li>
+							
+						<li><h:commandLink action="#{manageVolunteersController.begin}"
+								rendered="#{coreInfo.systemInstalled and sessionController.loggedIn}">
+								<i class="fa fa-user"></i>
+								<span><h:outputText
+										value="#{msgsCore['core.menu.manageVolunteers']}" /></span>
+							</h:commandLink>
+						</li>
+						
+						<li><h:commandLink action="#{manageCommunitiesController.begin}"
+								rendered="#{coreInfo.systemInstalled and sessionController.loggedIn}">
+								<i class="fa fa-users"></i>
+								<span><h:outputText
+										value="#{msgsCore['core.menu.manageCommunities']}" /></span>
+							</h:commandLink>
+						</li>
+						
+						
+						
 					</ul>
 				</h:form>
 				<!-- /.sidebar-menu -->
