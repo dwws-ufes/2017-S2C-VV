@@ -25,6 +25,7 @@
 		</repository>
 	</repositories>
 	<build>
+		<finalName>s2c-vv</finalName>
 		<sourceDirectory>src</sourceDirectory>
 		<resources>
 			<resource>
@@ -63,6 +64,12 @@
 			<groupId>org.primefaces.themes</groupId>
 			<artifactId>bootstrap</artifactId>
 			<version>1.0.10</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.jena</groupId>
+			<artifactId>apache-jena-libs</artifactId>
+			<type>pom</type>
+			<version>3.3.0</version>
 		</dependency>
 	</dependencies>
 </project>
