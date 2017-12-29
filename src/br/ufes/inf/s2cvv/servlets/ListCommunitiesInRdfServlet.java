@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.sparql.vocabulary.FOAF;
@@ -46,23 +47,43 @@ public class ListCommunitiesInRdfServlet extends HttpServlet{
 		Model model = ModelFactory.createDefaultModel();
 		String myNS = "http://localhost:8080/s2cvv/data/Community/";
 		String dboNS = "http://dbpedia.org/ontology/" ;
+		String dbpNS = "http://dbpedia.org/property/" ;
+		String gnNS = "http://www.geonames.org/ontology#";
 		model.setNsPrefix("dbo", dboNS);
+		model.setNsPrefix("dbp", dbpNS);
+		model.setNsPrefix("gn", gnNS);
 		
-		Resource Church = ResourceFactory.createResource(dboNS + "Church"); // dbo:Person
+		Resource Church = ResourceFactory.createResource(dboNS + "Church"); // dbo:Church
+		Property State =  (Property) ResourceFactory.createResource(gnNS + "parentADM1"); // gn:parentADM1
+		Property City =   (Property) ResourceFactory.createResource(gnNS + "parentADM2"); // gn:parentADM2
+		Property Phone =  (Property) ResourceFactory.createResource(dbpNS + "phoneNumber"); // gn:parentADM2
 
 		for (Community community : communities) {
 			System.out.println(community.getName());
 			System.out.println(community.getTelephone());
 			System.out.println(community.getAddress());
-			//System.out.println(community.getState());
+			System.out.println(community.getState());
+			System.out.println(community.getCity());
+			System.out.println(community.getWiki());
+			
 			
 			model.createResource(myNS + community.getName()); // this is the resource id
 			
 			model.getResource(myNS + community.getName()).addProperty(RDF.type, Church);
 			model.getResource(myNS + community.getName()).addProperty(RDFS.label, community.getName());
-			
-			if (!(community.getTelephone() == null)) {
-				model.getResource(myNS + community.getName()).addProperty(FOAF.phone, community.getTelephone());
+			/*
+			if (!(community.getAddress() == null)) {
+				model.getResource(myNS + community.getName()).addProperty(Phone, community.getTelephone());
+			}
+			if (!(community.getState() == null)) {
+				model.getResource(myNS + community.getName()).addProperty(State, community.getTelephone());
+			}
+			if (!(community.getCity() == null)) {
+				model.getResource(myNS + community.getName()).addProperty(City, community.getTelephone());
+			}
+			*/
+			if (!(community.getWiki() == null)) {
+				model.getResource(myNS + community.getName()).addProperty(FOAF.isPrimaryTopicOf, community.getWiki());
 			}
 			logger.log(Level.INFO, "Added Community/" + community.getName() + " to the RDF model");
 		}
