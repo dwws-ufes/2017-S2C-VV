@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,6 +35,14 @@ public class Community extends PersistentObjectSupport implements Comparable<Com
 	@NotNull
 	@Size(max = 200)
 	protected String address;
+	
+	@Basic
+	@NotNull
+	@Size(max = 60)
+	protected String city;
+	
+	@Lob
+	protected String state;
 
 	@Temporal(TemporalType.DATE)
 	protected Date creationDate;
@@ -93,6 +102,22 @@ public class Community extends PersistentObjectSupport implements Comparable<Com
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	@Override

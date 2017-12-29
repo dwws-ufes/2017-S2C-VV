@@ -68,6 +68,36 @@
 
 			<ui:decorate
 				template="/resources/#{coreInfo.decorator}/formfield.xhtml">
+				<ui:param name="fieldName" value="city" />
+				<ui:param name="label"
+					value="#{msgsCore['manageCommunities.form.city']}" />
+				<p:inputText id="city"
+					value="#{manageCommunitiesController.selectedEntity.city}"
+					required="true"
+					pt:placeholder="#{msgsCore['manageCommunities.form.city.placeholder']}"
+					disabled="#{manageCommunitiesController.readOnly}">
+					<p:ajax event="blur" update="cityField" listener="#{manageCommunitiesController.suggestState}" execute="@this" render=":state" />
+				</p:inputText>
+			</ui:decorate>
+
+			<ui:decorate
+				template="/resources/#{coreInfo.decorator}/formfield.xhtml">
+				<ui:param name="fieldName" value="state" />
+				<ui:param name="label"
+					value="#{msgsCore['manageCommunities.form.state']}" />
+				<h:panelGroup id="state2">
+				<p:inputText id="state"
+					value="#{manageCommunitiesController.selectedEntity.state}"
+					required="true"
+					pt:placeholder="#{msgsCore['manageCommunities.form.state.placeholder']}"
+					disabled="#{manageCommunitiesController.readOnly}"
+					update="state2">
+					<p:ajax event="blur" update="stateField" />
+				</p:inputText></h:panelGroup>
+			</ui:decorate>
+
+			<ui:decorate
+				template="/resources/#{coreInfo.decorator}/formfield.xhtml">
 				<ui:param name="fieldName" value="telephone" />
 				<ui:param name="label"
 					value="#{msgsCore['manageCommunities.form.telephone']}" />
