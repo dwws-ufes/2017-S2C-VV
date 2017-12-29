@@ -97,13 +97,23 @@
 				</p:column>
 
 				<p:column
+					headerText="#{msgsCore['manageCommunities.form.telephone']}">
+					<h:outputText value="#{entity.telephone}" />
+				</p:column>
+
+				<p:column
 					headerText="#{msgsCore['manageCommunities.form.address']}">
 					<h:outputText value="#{entity.address}" />
 				</p:column>
 
 				<p:column
-					headerText="#{msgsCore['manageCommunities.form.telephone']}">
-					<h:outputText value="#{entity.telephone}" />
+					headerText="#{msgsCore['manageCommunities.form.city']}">
+					<h:outputText value="#{entity.city}" />
+				</p:column>
+
+				<p:column
+					headerText="#{msgsCore['manageCommunities.form.state']}">
+					<h:outputText value="#{entity.state}" />
 				</p:column>
 
 				<p:ajax event="rowSelect" update=":listingForm:buttonsGroup" />

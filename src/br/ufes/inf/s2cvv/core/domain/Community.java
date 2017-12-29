@@ -34,6 +34,40 @@ public class Community extends PersistentObjectSupport implements Comparable<Com
 	@NotNull
 	@Size(max = 200)
 	protected String address;
+	
+	@Basic
+	@NotNull
+	@Size(max = 60)
+	protected String city;
+	
+	@Basic
+	@NotNull
+	@Size(max = 30)
+	protected String state;
+	
+	@Basic
+	@Size(max = 100)
+	protected String wiki;
+	
+	public String getWiki() {
+		return wiki;
+	}
+
+	public void setWiki(String wiki) {
+		this.wiki = wiki;
+	}
+
+	@Basic
+	@Size(max = 100)
+	protected String map;
+
+	public String getMap() {
+		return map;
+	}
+
+	public void setMap(String map) {
+		this.map = map;
+	}
 
 	@Temporal(TemporalType.DATE)
 	protected Date creationDate;
@@ -93,6 +127,22 @@ public class Community extends PersistentObjectSupport implements Comparable<Com
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	@Override
