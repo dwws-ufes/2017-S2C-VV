@@ -76,7 +76,7 @@
 					required="true"
 					pt:placeholder="#{msgsCore['manageCommunities.form.city.placeholder']}"
 					disabled="#{manageCommunitiesController.readOnly}">
-					<p:ajax event="blur" update="cityField" listener="#{manageCommunitiesController.suggestState}" execute="@this" render=":state" />
+					<f:ajax event="blur" listener="#{manageCommunitiesController.suggestState}" execute="@this" render="state" />
 				</p:inputText>
 			</ui:decorate>
 
@@ -85,15 +85,13 @@
 				<ui:param name="fieldName" value="state" />
 				<ui:param name="label"
 					value="#{msgsCore['manageCommunities.form.state']}" />
-				<h:panelGroup id="state2">
 				<p:inputText id="state"
 					value="#{manageCommunitiesController.selectedEntity.state}"
 					required="true"
 					pt:placeholder="#{msgsCore['manageCommunities.form.state.placeholder']}"
-					disabled="#{manageCommunitiesController.readOnly}"
-					update="state2">
+					disabled="#{manageCommunitiesController.readOnly}">
 					<p:ajax event="blur" update="stateField" />
-				</p:inputText></h:panelGroup>
+				</p:inputText>
 			</ui:decorate>
 
 			<ui:decorate
