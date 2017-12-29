@@ -35,6 +35,10 @@ public class Person extends PersistentObjectSupport implements Comparable<Person
 	@Basic
 	@Size(max = 50)
 	protected String password;
+	
+	public Long getId() {
+		return serialVersionUID;
+	}
 
 	public String getEmail() {
 		return email;
