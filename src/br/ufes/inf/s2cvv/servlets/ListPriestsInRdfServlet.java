@@ -56,11 +56,19 @@ public class ListPriestsInRdfServlet extends HttpServlet{
 			System.out.println(priest.getEmail());
 			System.out.println(priest.getTelephone());
 			
-			model.createResource(myNS + priest.getName())
-				.addProperty(RDF.type, Person)
-				.addProperty(RDF.type, Cleric)
-				.addProperty(FOAF.name, priest.getName())
-				.addProperty(FOAF.mbox, priest.getEmail())
+			model.createResource(myNS + priest.getName()); // this is the resource id
+			
+			model.getResource(myNS + priest.getName()).addProperty(RDF.type, Person);
+			model.getResource(myNS + priest.getName()).addProperty(RDF.type, Cleric);
+			model.getResource(myNS + priest.getName()).addProperty(FOAF.name, priest.getName());
+			
+			if (!(priest.getEmail() == null)) {
+				model.getResource(myNS + priest.getName()).addProperty(FOAF.mbox, priest.getEmail());
+			}
+			if (!(priest.getTelephone() == null)) {
+				model.getResource(myNS + priest.getName()).addProperty(FOAF.phone, priest.getTelephone());
+			}
+			
 				//.addProperty(FOAF.phone, priest.getTelephone())
 				;
 			
