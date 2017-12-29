@@ -47,15 +47,12 @@ public class ListPriestsInRdfServlet extends HttpServlet{
 		String foafNS = "http://xmlns.com/foaf/0.1/";
 		String dboNS = "http://dbpedia.org/ontology/" ;
 		model.setNsPrefix("foaf", foafNS);
+		model.setNsPrefix("dbo", dboNS);
 		
 		Resource Person = ResourceFactory.createResource(foafNS + "Person"); // foaf:Person
 		Resource Cleric = ResourceFactory.createResource(dboNS + "Cleric"); // dbo:Cleric
 
 		for (Priest priest : priests) {
-			System.out.println(priest.getName());
-			System.out.println(priest.getEmail());
-			System.out.println(priest.getTelephone());
-			
 			model.createResource(myNS + priest.getName()); // this is the resource id
 			
 			model.getResource(myNS + priest.getName()).addProperty(RDF.type, Person);
@@ -67,18 +64,7 @@ public class ListPriestsInRdfServlet extends HttpServlet{
 			}
 			if (!(priest.getTelephone() == null)) {
 				model.getResource(myNS + priest.getName()).addProperty(FOAF.phone, priest.getTelephone());
-			}
-			
-				//.addProperty(FOAF.phone, priest.getTelephone())
-				;
-			
-			
-			
-			/*
-				
-				
-				; */
-			
+			}			
 			logger.log(Level.INFO, "Added Priest/" + priest.getName() + " to the RDF model");
 		}
 		
