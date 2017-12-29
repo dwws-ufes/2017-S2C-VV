@@ -6,7 +6,6 @@ import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -41,8 +40,34 @@ public class Community extends PersistentObjectSupport implements Comparable<Com
 	@Size(max = 60)
 	protected String city;
 	
-	@Lob
+	@Basic
+	@NotNull
+	@Size(max = 30)
 	protected String state;
+	
+	@Basic
+	@Size(max = 100)
+	protected String wiki;
+	
+	public String getWiki() {
+		return wiki;
+	}
+
+	public void setWiki(String wiki) {
+		this.wiki = wiki;
+	}
+
+	@Basic
+	@Size(max = 100)
+	protected String map;
+
+	public String getMap() {
+		return map;
+	}
+
+	public void setMap(String map) {
+		this.map = map;
+	}
 
 	@Temporal(TemporalType.DATE)
 	protected Date creationDate;

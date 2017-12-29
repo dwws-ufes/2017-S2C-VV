@@ -455,6 +455,26 @@
 	<script
 		src="#{facesContext.externalContext.requestContextPath}/resources/default/stylesheets/AdminLTE-2.3.0/dist/js/app.min.js"></script>
 
+	<script>
+		jsf.ajax.addOnEvent(function(data) {
+			var ajaxstatus = data.status;
+			var ajaxloader = document.getElementById("ajaxloader");
+			switch (ajaxstatus) {
+				case "begin":
+					ajaxloader.style.display = 'block';
+					break;
+				case "complete":
+					ajaxloader.style.display = 'none';
+					break;
+				case "success":
+					break;
+			}
+		});
+	</script>
+	<img id="ajaxloader"
+		src="#{facesContext.externalContext.requestContextPath}/files/images/ajaxloader.gif"
+		style="display: none; float: right;" />
+
 	<!-- Optionally, you can add Slimscroll and FastClick plugins.
          Both of these plugins are recommended to enhance the
          user experience. Slimscroll is required when using the

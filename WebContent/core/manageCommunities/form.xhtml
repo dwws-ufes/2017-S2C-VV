@@ -76,7 +76,7 @@
 					required="true"
 					pt:placeholder="#{msgsCore['manageCommunities.form.city.placeholder']}"
 					disabled="#{manageCommunitiesController.readOnly}">
-					<f:ajax event="blur" listener="#{manageCommunitiesController.suggestState}" execute="@this" render="state" />
+					<f:ajax event="change" listener="#{manageCommunitiesController.suggestState}" execute="@this" render="state wiki map" />
 				</p:inputText>
 			</ui:decorate>
 
@@ -91,6 +91,34 @@
 					pt:placeholder="#{msgsCore['manageCommunities.form.state.placeholder']}"
 					disabled="#{manageCommunitiesController.readOnly}">
 					<p:ajax event="blur" update="stateField" />
+				</p:inputText>
+			</ui:decorate>
+
+			<ui:decorate
+				template="/resources/#{coreInfo.decorator}/formfield.xhtml">
+				<ui:param name="fieldName" value="wiki" />
+				<ui:param name="label"
+					value="#{msgsCore['manageCommunities.form.wiki']}" />
+				<p:inputText id="wiki"
+					value="#{manageCommunitiesController.selectedEntity.wiki}"
+					required="false"
+					pt:placeholder="#{msgsCore['manageCommunities.form.wiki.placeholder']}"
+					disabled="#{manageCommunitiesController.readOnly}">
+					<p:ajax event="blur" update="wikiField" />
+				</p:inputText>
+			</ui:decorate>
+
+			<ui:decorate
+				template="/resources/#{coreInfo.decorator}/formfield.xhtml">
+				<ui:param name="fieldName" value="map" />
+				<ui:param name="label"
+					value="#{msgsCore['manageCommunities.form.map']}" />
+				<p:inputText id="map"
+					value="#{manageCommunitiesController.selectedEntity.map}"
+					required="false"
+					pt:placeholder="#{msgsCore['manageCommunities.form.map.placeholder']}"
+					disabled="#{manageCommunitiesController.readOnly}">
+					<p:ajax event="blur" update="mapField" />
 				</p:inputText>
 			</ui:decorate>
 
